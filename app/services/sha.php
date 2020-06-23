@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Resources\Github;
 
 /**
- * Main service for getting SHA key from different services
+ * Main service for getting SHA value from different services
  * @package App\Services
  */
 class Sha
@@ -31,15 +31,15 @@ class Sha
     }
 
     /**
-     * Get SHA key/make a API call from given service
+     * Get SHA value/make a API call from given service
      * @return array
      */
     private function loadResource() : array
     {
-        // Get SHA key from given service
+        // Get SHA value from given service
         switch ($this->service) {
             case 'github':
-                // Get SHA key from Gtihub
+                // Get SHA value from Gtihub
                 $resource = new Github($this->ownerRepo, $this->branch);
                 $response = $resource->getSha();
                 break;
@@ -54,7 +54,7 @@ class Sha
     }
 
     /**
-     * Get SHA key with message
+     * Get SHA value with message
      * @return string
      */
     public function getSha() : string
@@ -72,12 +72,12 @@ class Sha
      */
     private function parseMessage(array $response) : string
     {
-        // Check if there is no error with getting SHA key
+        // Check if there is no error with getting SHA value
         if (isset($response['error'])) {
-            return 'Oopsss... we had some problems with getting last commit SHA key: "'.$response['error'].'"';
+            return 'Oopsss... we had some problems with getting last commit SHA value: "'.$response['error'].'"';
         }
 
-        // Success! Return success message with SHA key
-        return 'Woohoo! We got it! Last commit SHA key is: "'.$response['sha'].'"';
+        // Success! Return success message with SHA value
+        return 'Woohoo! We got it! Last commit SHA value is: "'.$response['sha'].'"';
     }
 }
