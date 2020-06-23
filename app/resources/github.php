@@ -35,7 +35,7 @@ class Github
         // Generate URL and make API call
         $generatedUrl = $this->generateUrl();
 
-        $curlCall = Curl::callAPI('GET', $generatedUrl);
+        $curlCall = Curl::callAPI($generatedUrl);
 
         // Check if there is no error message
         if (!empty($curlCall->message)) {

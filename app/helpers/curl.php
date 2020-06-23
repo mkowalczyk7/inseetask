@@ -1,31 +1,22 @@
 <?php
 namespace App\Helpers;
 
+/**
+ * CURL HELPER
+ * @package App\Helpers
+ */
 class Curl
 {
-    public static function callAPI($method, $url, $data='')
+    /**
+     * Make API call
+     * @param string $url
+     * @return mixed
+     */
+    public static function callAPI(string $url)
     {
         $curl = curl_init();
-        switch ($method) {
-            case "POST":
-                curl_setopt($curl, CURLOPT_POST, 1);
-                if ($data) {
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                }
-                break;
-            case "PUT":
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
-                if ($data) {
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                }
-                break;
-            default:
-                if ($data) {
-                    $url = sprintf("%s?%s", $url, http_build_query($data));
-                }
-        }
 
-        // OPTIONS:
+        // Options
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             'User-Agent: mkowalczyk7',
@@ -35,13 +26,16 @@ class Curl
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-        // EXECUTE:
+        // Execute
         $result = curl_exec($curl);
 
         if (!$result) {
             die("CURL Connection Failure");
         }
+
         curl_close($curl);
+
+        // Return decoded json response
         return json_decode($result);
     }
 }
