@@ -22,7 +22,7 @@ Simple PHP app without using any framework.
 > Command have to be run from main application directory
 
 #### Example of usage
-- `php sha --repo=php-fig/log --branch=master`
+- `php sha.php --repo=php-fig/log --branch=master`
 
 #### Arguments
 
