@@ -14,7 +14,7 @@ Simple PHP app without using any framework.
 
 ## Installation
 
-- Copy files to your server and that's it!
+- Copy or pull files to your server and that's it!
 - No commands needed to be run
 
 ## Usage
