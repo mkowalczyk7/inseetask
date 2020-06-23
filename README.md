@@ -1,6 +1,7 @@
 # InSee TASK
 
 PHP CLI app for checking last commit SHA key from GitHub service
+Simple PHP app without using any framework.
 
 ---
 
